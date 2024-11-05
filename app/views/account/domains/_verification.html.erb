@@ -1,0 +1,15 @@
+<%= render 'account/shared/box', divider: true do |box| %>
+  <% box.title t('.header') %>
+  <% box.description do %>
+    <%= t('.description') %>
+    <%= t('.manage_description') if can? :manage, @domain %>
+  <% end %>
+  <% box.body do %>
+    <%= render "account/domains/statuses/#{@domain.status}" %>
+    <% unless @domain.status == 'active' %>
+      <% box.actions do %>
+        <%= button_to t('.buttons.verify'), [:account, @domain, :verifications], method: 'post', class: 'button-secondary' if can? :edit, @domain %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

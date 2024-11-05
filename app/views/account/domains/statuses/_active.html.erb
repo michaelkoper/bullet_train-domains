@@ -1,0 +1,41 @@
+<p>
+  Your domain has been successfully verified and is active. You can use it in your stacks.
+</p>
+<%= render 'dns_record_table', header_rows: ["STATUS", "HOST", "TYPE", "VALUE"] do |table| %>
+  <tr class="border-t border-gray-100">
+    <td class="p-4">
+      <%= render "account/domains/status_tag", color: :green do %>
+        Verified
+      <% end %>
+    </td>
+    <td class="p-4">
+      <div class="flex justify-between items-center gap-8">
+        <%= @domain.subdomain %>
+      </div>
+    </td>
+    <td class="p-4 text-gray-600">CNAME</td>
+    <td class="p-4">
+      <div class="flex justify-between items-center gap-8">
+        <%= ENV['DOMAIN_CNAME'] %>
+      </div>
+    </td>
+  </tr>
+  <tr class="border-t border-gray-100">
+    <td class="p-4">
+      <%= render "account/domains/status_tag", color: :green do %>
+        Verified
+      <% end %>
+    </td>
+    <td class="p-4">
+      <div class="flex justify-between items-center gap-8">
+        <%= @domain.txt_verification_name %>
+      </div>
+    </td>
+    <td class="p-4 text-gray-600">TXT</td>
+    <td class="p-4">
+      <div class="flex justify-between items-center gap-8">
+        <%= @domain.txt_verification_value %>
+      </div>
+    </td>
+  </tr>
+<% end %>

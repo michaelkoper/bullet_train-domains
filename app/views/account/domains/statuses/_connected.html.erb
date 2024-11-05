@@ -1,0 +1,47 @@
+<p>
+  Please verify ownership by adding the following DNS record:
+</p>
+<%= render 'dns_record_table', header_rows: ["STATUS", "HOST", "TYPE", "VALUE"] do |table| %>
+  <tr class="border-t border-gray-100">
+    <td class="p-4">
+      <%= render "account/domains/status_tag", color: :green do %>
+        Verified
+      <% end %>
+    </td>
+    <td class="p-4">
+      <div class="flex justify-between items-center gap-8">
+        <%= @domain.subdomain %>
+      </div>
+    </td>
+    <td class="p-4 text-gray-600">CNAME</td>
+    <td class="p-4">
+      <div class="flex justify-between items-center gap-8">
+        <%= ENV['DOMAIN_CNAME'] %>
+      </div>
+    </td>
+  </tr>
+  <tr class="border-t border-gray-100">
+    <td class="p-4">
+      <%= render "account/domains/status_tag", color: :orange do %>
+        Unverified
+      <% end %>
+    </td>
+    <td class="p-4">
+      <div class="flex justify-between items-center gap-8" data-controller="clipboard" data-clipboard-success-content="Copied!">
+        <span data-clipboard-target="source">
+          <%= @domain.txt_verification_name %>
+        </span>
+        <button class="button button-primary" type="button" data-action="clipboard#copy" data-clipboard-target="button">Copy</button>
+      </div>
+    </td>
+    <td class="p-4 text-gray-600">TXT</td>
+    <td class="p-4">
+      <div class="flex justify-between items-center gap-8" data-controller="clipboard" data-clipboard-success-content="Copied!">
+        <span data-clipboard-target="source">
+          <%= @domain.txt_verification_value %>
+        </span>
+        <button class="button button-primary" type="button" data-action="clipboard#copy" data-clipboard-target="button">Copy</button>
+      </div>
+    </td>
+  </tr>
+<% end %>

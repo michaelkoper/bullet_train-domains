@@ -1,0 +1,136 @@
+en:
+  domains: &domains
+    label: &label Domains
+    breadcrumbs:
+      label: *label
+    navigation:
+      label: *label
+      icon: ti ti-world
+    buttons: &buttons
+      new: Add New Domain
+      create: Create Domain
+      edit: Edit Domain
+      update: Update Domain
+      destroy: Remove Domain
+      verify: Verify Domain
+      shorthand:
+        edit: Edit
+        destroy: Delete
+      confirmations:
+        # TODO customize for your use-case.
+        destroy: Are you sure you want to remove %{domain_name}? This will also remove any child resources and can't be undone.
+    domain:
+      buttons: *buttons
+    fields: &fields
+      id:
+        heading: Domain ID
+      team_id:
+        heading: Team ID
+      address:
+        _: &address Address
+        label: *address
+        heading: *address
+        api_title: *address
+        api_description: *address
+      status:
+        _: &status Status
+        label: *status
+        heading: *status
+        api_title: *status
+        api_description: *status
+      external_hostname_id:
+        _: &external_hostname_id External Hostname ID
+        label: *external_hostname_id
+        heading: *external_hostname_id
+        api_title: *external_hostname_id
+        api_description: *external_hostname_id
+      txt_verification_name:
+        _: &txt_verification_name Txt Verification Name
+        label: *txt_verification_name
+        heading: *txt_verification_name
+        api_title: *txt_verification_name
+        api_description: *txt_verification_name
+      txt_verification_value:
+        _: &txt_verification_value Txt Verification Value
+        label: *txt_verification_value
+        heading: *txt_verification_value
+        api_title: *txt_verification_value
+        api_description: *txt_verification_value
+      # 🚅 super scaffolding will insert new fields above this line.
+      created_at:
+        _: &created_at Added
+        label: *created_at
+        heading: *created_at
+      updated_at:
+        _: &updated_at Updated
+        label: *updated_at
+        heading: *updated_at
+    api:
+      collection_actions: "Collection Actions for Domains"
+      index: "List Domains"
+      create: "Add a New Domain"
+      member_actions: "Actions for an Individual Domain"
+      show: "Retrieve a Domain"
+      update: "Update a Domain"
+      destroy: "Delete a Domain"
+      fields: *fields
+    index:
+      section: "%{teams_possessive} Domains"
+      contexts:
+        team:
+          header: Domains
+          description: Below is a list of Domains that have been added for %{team_name}.
+          description_empty: No Domains have been added for %{team_name}.
+      fields: *fields
+      buttons: *buttons
+    show:
+      section: "%{domain_name}"
+      header: Domain Details
+      description: Below are the details we have for %{domain_name}.
+      manage_description: You'll also find options for updating these details or removing %{domain_name} from %{team_name} entirely.
+      fields: *fields
+      buttons: *buttons
+    form: &form
+      buttons: *buttons
+      fields: *fields
+    new:
+      section: "New Domain for %{team_name}"
+      header: New Domain Details
+      description: Please provide the details of the new Domain you'd like to add to %{team_name}.
+      form: *form
+    edit:
+      section: "%{domain_name}"
+      header: Edit Domain Details
+      description: You can update the details or settings for %{domain_name} below.
+      form: *form
+    verification:
+      section: "Verify Domain for %{team_name}"
+      header: Verify Domain DNS records
+      description: lorem
+      manage_description: lorem ipsum
+      buttons: *buttons
+    notifications:
+      created: Domain was successfully created.
+      updated: Domain was successfully updated.
+      destroyed: Domain was successfully destroyed.
+  account:
+    domains: *domains
+  activerecord:
+    attributes:
+      domain:
+        address: *address
+        status: *status
+        external_hostname_id: *external_hostname_id
+        txt_verification_name: *txt_verification_name
+        txt_verification_value: *txt_verification_value
+        # 🚅 super scaffolding will insert new activerecord attributes above this line.
+        created_at: *created_at
+        updated_at: *updated_at
+    errors:
+      models:
+        domain:
+          attributes:
+            base:
+              only_one_internal: You may only have one domain for %{internal_domain}.
+            address:
+              must_include_subdomain: "must include a subdomain"

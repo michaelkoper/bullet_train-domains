@@ -1,0 +1,14 @@
+<table class="max-w-5xl border-collapse bg-white rounded-lg overflow-hidden shadow-sm">
+  <% if header_rows.present? %>
+    <thead>
+      <tr class="text-left text-gray-600 text-sm">
+        <% header_rows.each do |header| %>
+          <th class="p-4"><%= header %></th>
+        <% end %>
+      </tr>
+    </thead>
+  <% end %>
+  <tbody>
+    <%= yield %>
+  </tbody>
+</table>
