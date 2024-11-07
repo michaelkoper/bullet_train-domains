@@ -51,7 +51,7 @@ module Domains::Base
       uniqueness: true
     validate :validate_domain_format
     validate :only_one_internal_domain
-    validate :validate_exclusive_subdomain, if: -> { is_internal_domain? }
+    validate :validate_exclusive_subdomain, if: -> { is_internal_domain? && !localhost? }
 
     before_destroy :check_for_default, unless: :destroyed_by_association
 
