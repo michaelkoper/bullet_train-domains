@@ -72,12 +72,19 @@ module Domains::Base
 
   def root_domain
     return unless address
+    return "localhost" if localhost?
 
     PublicSuffix.domain(address)
   end
 
   def is_internal_domain?
+    return true if localhost?
+
     address.ends_with?(self.class.internal_domain)
+  end
+
+  def localhost?
+    address == "localhost" && Rails.env.development?
   end
 
   def provider
@@ -104,6 +111,8 @@ module Domains::Base
 
   def validate_domain_format
     return unless address.present?
+
+    return if address == "localhost" && Rails.env.development?
 
     unless PublicSuffix.valid?(address, default_rule: nil)
       errors.add(:address, :invalid)
