@@ -10,7 +10,7 @@ module Domains::Verifications::Cloudflare
   def verify_ownership
     return unless domain.status == "connected"
 
-    response = CloudflareService.custom_hostname(domain.cloudflare_hostname_id)
+    response = CloudflareService.custom_hostname(domain.external_hostname_id)
     if response.success?
       custom_hostname = response.body["result"]
       case custom_hostname["status"]
@@ -28,7 +28,7 @@ module Domains::Verifications::Cloudflare
     if response.success?
       domain.update!(
         status: "connected",
-        cloudflare_hostname_id: response.body["result"]["id"],
+        external_hostname_id: response.body["result"]["id"],
         txt_verification_name: response.body.dig("result", "ownership_verification", "name"),
         txt_verification_value: response.body.dig("result", "ownership_verification", "value")
       )

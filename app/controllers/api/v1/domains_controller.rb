@@ -46,7 +46,7 @@ if defined?(Api::V1::ApplicationController)
           *permitted_fields,
           :address,
           :status,
-          :cloudflare_hostname_id,
+          :external_hostname_id,
           :txt_verification_name,
           :txt_verification_value,
           # 🚅 super scaffolding will insert new fields above this line.
