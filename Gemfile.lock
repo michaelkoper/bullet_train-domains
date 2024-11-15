@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    bullet_train-domains (0.1.0)
+    bullet_train-domains (0.1.4)
       bullet_train
       rails (>= 7.0)
 

@@ -64,6 +64,12 @@ module Domains::Base
     end
   end
 
+  STATUSES.each do |state|
+    define_method("#{state}?") do
+      status == state
+    end
+  end
+
   def subdomain
     return if address.blank?
 
