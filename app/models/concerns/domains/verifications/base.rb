@@ -12,6 +12,7 @@ module Domains::Verifications::Base
     case domain.status
     when "initialized" then verify_connected
     when "connected" then verify_ownership
+    when "ownership_verified" then verify_ssl
     when "active"
       # All good
     else

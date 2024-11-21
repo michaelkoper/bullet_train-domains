@@ -1,7 +1,7 @@
 module Domains::Base
   extend ActiveSupport::Concern
 
-  STATUSES = %w[initialized connected owner_verified active]
+  STATUSES = %w[initialized connected ownership_verified active]
   RESERVED_SUBDOMAINS_INTERNAL_DOMAIN = %w[
     account
     accounts
@@ -95,7 +95,7 @@ module Domains::Base
 
   def provider
     return "Cloudflare" if external_hostname_id.present?
-    return "Internal" if is_internal_domain?
+    return internal_provider_name if is_internal_domain?
 
     "External"
   end
@@ -140,5 +140,9 @@ module Domains::Base
     if RESERVED_SUBDOMAINS_INTERNAL_DOMAIN.include?(subdomain)
       errors.add(:address, "subdomain is reserved")
     end
+  end
+
+  def internal_provider_name
+    "Internal"
   end
 end
