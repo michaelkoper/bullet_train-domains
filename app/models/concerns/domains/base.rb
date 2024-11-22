@@ -1,7 +1,7 @@
 module Domains::Base
   extend ActiveSupport::Concern
 
-  STATUSES = %w[initialized connected ownership_verified active]
+  STATUSES = %w[initialized connected ownership_verified securing active]
   RESERVED_SUBDOMAINS_INTERNAL_DOMAIN = %w[
     account
     accounts

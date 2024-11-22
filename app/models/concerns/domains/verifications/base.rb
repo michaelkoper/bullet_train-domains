@@ -13,6 +13,7 @@ module Domains::Verifications::Base
     when "initialized" then verify_connected
     when "connected" then verify_ownership
     when "ownership_verified" then verify_ssl
+    when "securing" then verify_ssl
     when "active"
       # All good
     else
