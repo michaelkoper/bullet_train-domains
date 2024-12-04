@@ -2,7 +2,7 @@ module Domains::Cloudflare
   extend ActiveSupport::Concern
 
   included do
-    before_destroy :delete_from_cloudflare
+    # before_destroy :delete_from_cloudflare
   end
 
   def sync_cloudflare_domain
